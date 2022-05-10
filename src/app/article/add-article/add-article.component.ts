@@ -19,8 +19,9 @@ import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA,MatDialogRef } from '@angula
 })
 export class AddArticleComponent implements OnInit {
   CategorieList: Categorie[];
-  ScategorieList: any;
-  scategorie : any={};
+  categorie : any;
+  ScategorieList: Scategorie[];
+  scategorie : any = {};
   wcode : string = '';
   userFile ;
   public imagePath;
@@ -35,7 +36,7 @@ export class AddArticleComponent implements OnInit {
     ) { }
     get f() { return this.crudApi.dataForm.controls; }
   ngOnInit() {
-   if (this.crudApi.choixmenu == "A")
+   if (this.crudApi.choixmenu == 'A')
     {this.infoForm()};
     this.categorieService.getAll().subscribe(
       response =>{this.CategorieList = response;}
@@ -63,7 +64,7 @@ export class AddArticleComponent implements OnInit {
       this.crudApi.dataForm.reset();
   }
   onSubmit() {
-    if (this.crudApi.choixmenu == "A")
+    if (this.crudApi.choixmenu == 'A')
     {
       this.addData();
     }
@@ -73,10 +74,10 @@ export class AddArticleComponent implements OnInit {
     }
 }
 
-onSelectCateg(id_categ: string)
+onSelectCateg(event: any)
 {
-  this.scategorieService.listScateg(id_categ).subscribe(
-    response =>{this.ScategorieList = response;}
+  this.categorieService.getData(event).subscribe(
+    response => {this.categorie = response;}
    );
 }
 
@@ -85,9 +86,6 @@ onSelectScateg(id_scateg: string)
  this.scategorieService.getData(id_scateg).subscribe(
     response =>{
       this.scategorie = response;
-      this.wcode = (10000 + this.scategorie.rang).toString().substring(1);
-      this.wcode = this.scategorie.id_categ+this.scategorie.code+this.wcode;
-      this.f['code'].setValue(this.wcode);
       }
    );
 }

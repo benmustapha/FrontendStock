@@ -20,48 +20,39 @@ import { ListArticleComponent } from './article/list-article/list-article.compon
 import { HttpClientModule} from '@angular/common/http';
 import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { ListUserComponent } from './user/list-user/list-user.component';
-
 import { MenuComponent } from './menu/menu.component';
 import { DatePipe } from '@angular/common';
-import { AuthGuardService} from './auth/auth-guard.service';
-
 import { AddCommsComponent } from './comms/add-comms/add-comms.component';
 import { ListCommsComponent } from './comms/list-comms/list-comms.component';
 import { ListLcommsComponent } from './comms/list-lcomms/list-lcomms.component';
 import { AddLcommsComponent } from './comms/add-lcomms/add-lcomms.component';
-import { AddAgentComponent } from './agent/add-agent/add-agent.component';
-import { ListAgentComponent } from './agent/list-agent/list-agent.component';
-
 import { AddPanierComponent } from './panier/add-panier/add-panier.component';
-
 import { AddChariotComponent } from './chariot/add-chariot/add-chariot.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component'
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
 ];
 const appRoutes : Routes = [
-  {path: '', component: MenuComponent, children : [
+  {path: '', component: HomeComponent},
   {path: 'clients', component: ListClientComponent},
   {path: 'panier', component: AddPanierComponent},
   {path: 'comms', component: AddCommsComponent },
   {path: 'lcomms', component: ListCommsComponent },
   {path: 'client', component: AddClientComponent},
-  {path: 'clients', component: ListClientComponent},
   {path: 'categories', component: ListCategorieComponent},
   {path: 'categorie', component: AddCategorieComponent},
   {path: 'scategories', component: ListScategorieComponent},
   {path: 'scategorie', component: AddScategorieComponent},
   {path: 'larticle', component: ListArticleComponent},
-  {path: 'article', component: AddArticleComponent},]},
+  {path: 'article', component: AddArticleComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-
 ];
 
 @NgModule({
@@ -83,11 +74,9 @@ const appRoutes : Routes = [
     ListCommsComponent,
     ListLcommsComponent,
     AddLcommsComponent,
-    AddAgentComponent,
-    ListAgentComponent,
     AddPanierComponent,
-
-    AddChariotComponent
+    AddChariotComponent,
+    HomeComponent
 
 
 
@@ -108,9 +97,6 @@ const appRoutes : Routes = [
     MatIconModule,
     NgMatSearchBarModule,
     NgbModule
-
-
-
 
   ],
   exports : MATERIAL_MODULES,

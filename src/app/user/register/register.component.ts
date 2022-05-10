@@ -15,12 +15,12 @@ export class RegisterComponent implements OnInit {
     private router : Router) { }
 
   ngOnInit() {
-  
-   
+
+
     this.infoForm();
    }
 
-  
+
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
         id: null,
@@ -31,17 +31,17 @@ export class RegisterComponent implements OnInit {
         pwdd: ['', [Validators.required, Validators.minLength(8)]],
         });
     }
-   
-  
+
+
 
   ResetForm() {
       this.crudApi.dataForm.reset();
   }
   onSubmit() {
-   
+
     if (this.crudApi.dataForm.value.pwd == this.crudApi.dataForm.value.pwdd)
     {
-      if (this.crudApi.choixmenu == "A")
+      if (this.crudApi.choixmenu == 'A')
       {
         this.addData();
       }
@@ -52,23 +52,23 @@ export class RegisterComponent implements OnInit {
     }
     else
     {
-      this.toastr.warning( 'Vérifiet votre de passe ...');  
+      this.toastr.warning( 'Vérifiet votre de passe ...');
     }
 }
-  
-   
+
+
 
 addData() {
   this.crudApi.createData(this.crudApi.dataForm.value).
   subscribe( data => {
-    this.toastr.success( 'Validation Faite avec Success'); 
+    this.toastr.success( 'Validation Faite avec Success');
     this.router.navigate(['/users']);
   });
 }
   updateData()
   {
-  
-    this.crudApi.updatedata(this.crudApi.dataForm.value.id,this.crudApi.dataForm.value).
+
+    this.crudApi.updatedata(this.crudApi.dataForm.value.id, this.crudApi.dataForm.value).
     subscribe( data => {
       this.toastr.success( 'Modification Faite avec Success');
 
@@ -79,5 +79,5 @@ addData() {
 
 
 
-  
+
 }

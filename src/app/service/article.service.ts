@@ -11,11 +11,11 @@ import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
 export class ArticleService {
   private baseUrl = '/api/articles';
   private baseUrl1 = '/api/saveUserServer';
-  host :string = "http://localhost:8080";
+  host = 'http://localhost:8080';
 
   choixmenu : string  = 'A';
   listData : Article[];
-  public dataForm:  FormGroup;
+  public dataForm: FormGroup;
   constructor(private http: HttpClient) { }
 
 

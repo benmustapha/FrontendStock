@@ -24,7 +24,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCommsComponent implements OnInit {
  ClientList: Client[];
-    
+
     isValid:boolean = true;
     articleService: any;
     minDate ;
@@ -42,7 +42,7 @@ export class AddCommsComponent implements OnInit {
       private currentRoute: ActivatedRoute,
       private datePipe : DatePipe) { }
       get f() { return this.service.formData.controls; }
-  
+
   ngOnInit() {
      this.minDate = this.transformDate(new Date());
      this.annee = parseInt(localStorage.getItem('annee'));
@@ -53,15 +53,15 @@ export class AddCommsComponent implements OnInit {
   this.service.list = [];
      //let id =this.currentRoute.snapshot.paramMap.get('id');
     //  if (this.service.formData.value.id == null){
-      
-       
+
+
         this.clientService.getAll().subscribe(
         response =>{this.ClientList = response;}
        );
     // }
     }
-  
-  
+
+
   onSelectCompteur(id: number)
    {
     this.compteurservice.getData(id).subscribe(
@@ -69,14 +69,14 @@ export class AddCommsComponent implements OnInit {
         this.compteur = response;
         this.f['numero'].setValue(20200000 + this.compteur.numcomms);
         }
-     );  
-   } 
-     
-      
+     );
+   }
+
+
   InfoForm() {
-   
+
       this.service.formData = this.fb.group({
-        id :null,
+        id : null,
         annee : 0,
         numero : 0,
         date_comm : '',
@@ -88,12 +88,12 @@ export class AddCommsComponent implements OnInit {
         totttc : 0,
         lcommServices :[],
         });
-      } 
-    
+      }
+
   ResetForm() {
         this.service.formData.reset();
     }
-  AddData(Index,Id){  
+  AddData(Index,Id){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
       dialogConfig.disableClose = true;
@@ -103,15 +103,15 @@ export class AddCommsComponent implements OnInit {
         this.calcul();
       });
     }
-  
-    
+
+
   onDelete(item : Lcommser,Id:number,i:number){
       if(Id != null)
       this.service.formData.value.id+=Id ;
      this.service.list.splice(i,1);
      this.calcul();
      }
-  
+
   calcul(){
     this.f['totht'].setValue(this.service.list.reduce((prev, curr) => {
       return prev + curr.totht;
@@ -121,30 +121,30 @@ export class AddCommsComponent implements OnInit {
     }, 0));
     this.f['totttc'].setValue(this.service.list.reduce((prev, curr) => {
       return prev + curr.totttc;
-    }, 0));   
-     
+    }, 0));
+
      }
   validateForm(){
        this.isValid = true ;
-      
+
        if(this.service.formData.value.id_client==0)
        this.isValid =false;
-      
+
        else if (this.service.list.length==0)
        this.isValid =false;
        return this.isValid;
      }
-  
+
   onSubmit(){
-    
+
      this.f['lcommServices'].setValue(this.service.list);
         this.service.saveOrUpdate(this.service.formData.value).
         subscribe( data => {
-          this.toastr.success( 'Validation Faite avec Success'); 
+          this.toastr.success( 'Validation Faite avec Success');
           this.router.navigate(['/lcomms']);
         });
      }
-    
+
   transformDate(date){
        return this.datePipe.transform(date, 'yyyy-MM-dd');
      }
@@ -159,4 +159,3 @@ export class AddCommsComponent implements OnInit {
         }
       }
   }
-  

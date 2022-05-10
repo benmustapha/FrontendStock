@@ -25,9 +25,9 @@ export class ListArticleComponent implements OnInit {
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef:MatDialogRef<AddArticleComponent>,) { }
- 
+
   ngOnInit() {
-    
+
     this.getData();
   }
   addarticle()
@@ -40,25 +40,25 @@ export class ListArticleComponent implements OnInit {
     //dialogConfig.data="gdddd";
     this.matDialog.open(AddArticleComponent, dialogConfig);
   }
- 
-  
 
-  
+
+
+
   getData() {
     this.crudApi.getAll().subscribe(
       response =>{this.crudApi.listData = response;}
      );
-   
+
   }
-  
- 
+
+
   removeData(id: number) {
     if (window.confirm('Are sure you want to delete this Article ?')) {
     this.crudApi.deleteData(id)
       .subscribe(
         data => {
           console.log(data);
-          this.toastr.warning(' data successfully deleted!'); 
+          this.toastr.warning(' data successfully deleted!');
           this.getData();
         },
         error => console.log(error));
@@ -71,7 +71,7 @@ export class ListArticleComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width="50%";
-    
+
     this.matDialog.open(AddArticleComponent, dialogConfig);
   }
 }
