@@ -46,6 +46,8 @@ export class AddArticleComponent implements OnInit {
   infoForm() {
     this.crudApi.dataForm = this.fb.group({
         id: null,
+      code_categ: ['', [Validators.required]],
+      code_scateg: ['', [Validators.required]],
         code: ['', [Validators.required]],
         code_b: ['', [Validators.required]],
         libelle: ['', [Validators.required]],
@@ -54,8 +56,6 @@ export class AddArticleComponent implements OnInit {
         tva: [0, [Validators.required]],
         fodec: [0, [Validators.required]],
         stkinit: [0, [Validators.required]],
-        code_categ: ['', [Validators.required]],
-        code_scateg: ['', [Validators.required]],
         profile : [],
       });
     }

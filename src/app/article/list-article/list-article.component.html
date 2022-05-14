@@ -1,6 +1,41 @@
 
 
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="index.html" class="logo">
+            <img src="assets/images/logo.png">
+          </a>
+          <!-- ***** Logo End ***** -->
+          <ul class="nav">
+            <li><a routerLink="/larticle">Create article</a>
+            <li><a routerLink="/register">Create account</a></li>
+            <li><a routerLink="/lcomms">Panier</a></li>
+          </ul>
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav" *ngFor="let item of crudApi.listData ">
+            <li class="scroll-to-section"><a href="#{{item.libelle}}">{{item.libelle}} </a></li>
 
+
+          </ul>
+
+
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
+<br>
+<br><br><br>
  <div class="pricing-header mx-auto">
    <div class="table-responsive">
     <table class="table table-bordered table-responsive-sm table-responsive-md
@@ -39,8 +74,11 @@
       <i class="fa fa-pencil-square-o" ></i></button></td>
    <td><button class="btn btn-danger btn btn-outline-dark ml-1" (click) = "removeData(item.id)">
       <i class="fa fa-trash-o"></i></button></td>
+
        </tr>
-         </tbody>
+    <a href="">   <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close" ></i> Close</button></a>
+
+    </tbody>
          </table>
          </div>
        </div>
